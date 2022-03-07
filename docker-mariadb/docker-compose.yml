@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  db:
+      image: mariadb:latest
+      container_name: mariadb
+      environment:
+        MYSQL_ROOT_PASSWORD: "0000"
+        MYSQL_DATABASE: bda
+      ports:
+        - "3306:3306"
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      environment:
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: "0000"
+      #restart: always
+      ports:
+        - "8001:80"
+      depends_on:
+        - db
+      restart: always

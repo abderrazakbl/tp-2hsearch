@@ -1,0 +1,43 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="bda"
+		transaction-type="RESOURCE_LOCAL">
+		<properties>
+			<!-- Gestion SCHEMA -->
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+			<property
+				name="javax.persistence.schema-generation.scripts.action"
+				value="drop-and-create" />
+			<property
+				name="javax.persistence.schema-generation.scripts.create-target"
+				value="demo-hsearch.dll" />
+			<property
+				name="javax.persistence.schema-generation.scripts.drop-target"
+				value="demo-hsearch.dll" />
+
+			<!-- Gestion BDD -->
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/bda" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="0000" />
+
+			<!-- Gestion RI / index sur disque -->
+			<property name="hibernate.search.backend.directory.root"
+				value="./index" />
+
+			<property
+				name="hibernate.search.backend.analysis.configurer"
+				value="class:fr.univtln.dapm.bda.hsearch_elasticsearch.search.M1DidAnalyzer" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
